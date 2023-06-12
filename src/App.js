@@ -14,9 +14,10 @@ import {
 } from "reactstrap";
 
 const data = [
-  { id: 1, nombre: "andres", titulo: "cirujano" },
-  { id: 2, nombre: "andrea", titulo: "oftalmologa" },
-  { id: 3, nombre: "jenny", titulo: "dentista" },
+  { id: 1, nombre: "alexander", cargo: "cirujano", especialidad:"ocular" },
+  { id: 2, nombre: "andrea", cargo: "oftalmologa" },
+  { id: 3, nombre: "camila", cargo: "dentista" },
+  { id:4, nombre:"alexandra", cargo:"abogado"}
 ];
 
 class App extends React.Component {
@@ -27,7 +28,8 @@ class App extends React.Component {
     form: {
       id: "",
       nombre: "",
-      titulo: "",
+      cargo: "",
+      especialidad:""
     },
   };
 
@@ -58,7 +60,7 @@ class App extends React.Component {
     arreglo.map((registro) => {
       if (dato.id == registro.id) {
         arreglo[contador].nombre = dato.nombre;
-        arreglo[contador].titulo = dato.titulo;
+        arreglo[contador].cargo = dato.cargo;
       }
       contador++;
     });
@@ -111,7 +113,8 @@ class App extends React.Component {
               <tr>
                 <th>ID</th>
                 <th>nombre</th>
-                <th>titulo</th>
+                <th>cargo</th>
+                <th>especialidad</th>
                 <th>opcionón</th>
               </tr>
             </thead>
@@ -121,15 +124,17 @@ class App extends React.Component {
                 <tr key={dato.id}>
                   <td>{dato.id}</td>
                   <td>{dato.nombre}</td>
-                  <td>{dato.titulo}</td>
+                  <td>{dato.cargo}</td>
+                  <td>{dato.especialidad}</td>
                   <td>
                     <Button
                       color="primary"
                       onClick={() => this.mostrarModalActualizar(dato)}
                     >
                       Editar
-                    </Button>{" "}
-                    <Button color="danger" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
+                    </Button>
+                    
+                    <Button color="primary" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
                   </td>
                 </tr>
               ))}
@@ -171,14 +176,14 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                titulo: 
+                cargo: 
               </label>
               <input
                 className="form-control"
-                name="titulo"
+                name="cargo"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.titulo}
+                value={this.state.form.cargo}
               />
             </FormGroup>
           </ModalBody>
@@ -191,9 +196,9 @@ class App extends React.Component {
               Editar
             </Button>
             <Button
-              color="danger"
-              onClick={() => this.cerrarModalActualizar()}
-            >
+              color="danger" onClick={() => this.cerrarModalActualizar()}>Cerrar
+
+            
               Cancelar
             </Button>
           </ModalFooter>
@@ -234,11 +239,11 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                titulo: 
+                cargo: 
               </label>
               <input
                 className="form-control"
-                name="titulo"
+                name="cargo"
                 type="text"
                 onChange={this.handleChange}
               />
